@@ -23,7 +23,7 @@ public class Oficina {
 
     @Getter
     @Setter
-    @Column(name = "direccio")
+    @Column(name = "direccion")
     private String direccion;
 
     @Getter
