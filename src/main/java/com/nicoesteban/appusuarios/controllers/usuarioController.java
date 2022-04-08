@@ -13,6 +13,16 @@ public class usuarioController {
     @Autowired
     private UsuarioDao usuarioDao;
 
+    @RequestMapping(value = "api/usuarios", method = RequestMethod.POST)
+    public void registrarUsuario(@RequestBody Usuario usuario) {
+        usuarioDao.registrar(usuario);
+    }
+
+    @RequestMapping(value = "api/usuarios/{id}", method = RequestMethod.GET)
+    public Usuario getUsuario(@PathVariable Long id) {
+        return usuarioDao.obtenerUsuario(id);
+    }
+
     @RequestMapping(value = "api/usuarios", method = RequestMethod.GET)
     public List<Usuario> getUsuarios() {
         return usuarioDao.getUsuarios();
@@ -21,28 +31,5 @@ public class usuarioController {
     @RequestMapping(value = "api/usuarios/{id}", method = RequestMethod.DELETE)
     public void eliminarUsuario(@PathVariable Long id) {
         usuarioDao.eliminarUsuario(id);
-    }
-
-
-
-
-
-
-    @RequestMapping(value = "api/usuarios/{id}", method = RequestMethod.GET)
-    public Usuario irEditarUsuario(@PathVariable Long id){
-        Usuario usuario = usuarioDao.obtenerUsuario(id);
-        return usuario;
-    }
-
-
-
-
-
-
-
-
-    @RequestMapping(value = "api/usuarios", method = RequestMethod.POST)
-    public void registrarUsuario(@RequestBody Usuario usuario){
-        usuarioDao.registrar(usuario);
     }
 }
